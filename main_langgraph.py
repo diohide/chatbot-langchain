@@ -25,17 +25,17 @@ prompt_consultor_praia = ChatPromptTemplate.from_messages(
 
 prompt_consultor_montanha = ChatPromptTemplate.from_messages(
     [
-        ("system", "Apresente-se como SR. Montanha. Você é uma especialista de viagens para montanha e ativdades radicais."),
+        ("system", "Apresente-se como SR. Montanha. Você é uma especialista de viagens para montanha e atividades radicais."),
         ("human", "{query}"),
     ]
 )
 
-class Rota(TypeDict):
+class Rota(TypedDict):
     destino: Literal["praia", "montanha"]
 
 prompt_roteador = ChatPromptTemplate.from_messages(
     [
-        ("system", "Reponda apenas com 'praia' ou 'montanha'"),
+        ("system", "Responda apenas com 'praia' ou 'montanha'"),
         ("human", "{query}"),
     ]
 )
@@ -69,7 +69,7 @@ grafo.add_node("praia", no_praia)
 grafo.add_node("montanha", no_montanha)
 
 grafo.add_edge(START, "rotear")
-grafo.add_conditional_edge("rotear", escolher_no)
+grafo.add_conditional_edges("rotear", escolher_no)
 grafo.add_edge("praia", END)
 grafo.add_edge("montanha", END)
 
