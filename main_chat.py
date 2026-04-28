@@ -35,15 +35,15 @@ def historico_por_sessao(sessao : str):
    
 
 list_questions = [
-    "Quero visitar um lugar no Brasil, famoso por praias e cultura. Pode sugerir?"
+    "Quero visitar um lugar no Brasil, famoso por praias e cultura. Pode sugerir?",
     "Qual a melhor época do ano pra ir?"
 ]
 
 chain_with_memory = RunnableWithMessageHistory(
     runnable = chain,
-    message_history = historico_por_sessao(sessao),
-    input_messages_key = "historico",
-    history_messages_key = "query" 
+    get_session_history = historico_por_sessao,
+    input_messages_key = "query",
+    history_messages_key = "historico" 
 )
 
 for question in list_questions:
